@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tổng Kết Chiến Dịch Ủng Hộ Đồng Bào Lũ Lụt</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #1a5276;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --success-color: #27ae60;
+            --light-color: #ecf0f1;
+            --text-color: #2c3e50;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+        
+        header {
+            background: linear-gradient(rgba(101, 179, 227, 0.9), rgba(65, 100, 123, 0.9)), 
+                        url('https://media-cdn-v2.laodong.vn/storage/newsportal/2025/10/30/1601066/HA9.jpg') center/cover no-repeat;
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            border-radius: 0 0 20px 20px;
+            margin-bottom: 2rem;
+        }
+        
+        h1, h2, h3 {
+            margin-bottom: 1rem;
+        }
+        
+        .page-title {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .page-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+        }
+        
+        .campaign-period {
+            background-color: rgba(255, 255, 255, 0.2);
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            font-weight: bold;
+        }
+        
+        .summary-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .summary-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .summary-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .summary-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .summary-number {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .summary-label {
+            color: #666;
+            font-size: 1rem;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin: 3rem 0 1.5rem;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary-color);
+            margin: 0.5rem auto;
+            border-radius: 2px;
+        }
+        
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .result-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .result-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        
+        .result-content {
+            padding: 1.5rem;
+        }
+        
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.8rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px dashed #eee;
+        }
+        
+        .result-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .result-value {
+            font-weight: bold;
+            color: var(--success-color);
+        }
+        
+        .activities {
+            margin: 3rem 0;
+        }
+        
+        .activity-timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .activity-timeline:before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background-color: var(--secondary-color);
+        }
+        
+        .activity-item {
+            display: flex;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        .activity-date {
+            background-color: var(--secondary-color);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-right: 2rem;
+            flex-shrink: 0;
+            z-index: 1;
+        }
+        
+        .activity-day {
+            font-size: 1.5rem;
+            font-weight: bold;
+            line-height: 1;
+        }
+        
+        .activity-month {
+            font-size: 0.8rem;
+        }
+        
+        .activity-content {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            flex: 1;
+        }
+        
+        .gallery {
+            margin: 3rem 0;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .gallery-item {
+            border-radius: 10px;
+            overflow: hidden;
+            height: 200px;
+            position: relative;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            color: white;
+            padding: 1rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+        
+        .impact-stats {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 3rem 0;
+            border-radius: 20px;
+            margin: 3rem 0;
+        }
+        
+        .impact-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: white;
+        }
+        
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .impact-item {
+            text-align: center;
+            padding: 1.5rem;
+        }
+        
+        .impact-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .impact-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        .team-section {
+            margin: 3rem 0;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .team-member {
+            text-align: center;
+        }
+        
+        .member-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 1rem;
+            border: 5px solid var(--light-color);
+        }
+        
+        .member-name {
+            font-weight: bold;
+            margin-bottom: 0.25rem;
+        }
+        
+        .member-role {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        footer {
+            background-color: var(--text-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+            border-radius: 20px 20px 0 0;
+        }
+        
+        .gratitude {
+            font-style: italic;
+            margin: 1.5rem 0;
+            font-size: 1.1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .activity-timeline:before {
+                left: 25px;
+            }
+            
+            .activity-date {
+                width: 50px;
+                height: 50px;
+                margin-right: 1.5rem;
+            }
+            
+            .activity-day {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 class="page-title">TỔNG KẾT CHIẾN DỊCH</h1>
+            <h1 class="page-title">"TÌNH ĐỒNG NGHIỆP, NGHĨA ĐỒNG BÀO"</h1>
+            <p class="page-subtitle">ỦNG HỘ ĐỒNG BÀO LŨ LỤT MIỀN TRUNG, TÂY NGUYÊN</p>
+            <div class="campaign-period">
+                <i class="fas fa-calendar-alt"></i> Thời gian: 24/11/2025 - 30/11/2025
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <section class="summary">
+            <div class="summary-cards">
+                <div class="summary-card">
+                    <div class="summary-icon">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <div class="summary-number">19,700,000đ</div>
+                    <div class="summary-label">Tổng số tiền quyên góp</div>
+                </div>
+                
+                <div class="summary-card">
+                    <div class="summary-icon">
+                        <i class="fas fa-box-open"></i>
+                    </div>
+                    <div class="summary-number">100</div>
+                    <div class="summary-label">Suất nhu yếu phẩm</div>
+                </div>
+                
+                <div class="summary-card">
+                    <div class="summary-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="summary-number">79</div>
+                    <div class="summary-label">Tấm lòng thiện tâm</div>
+                </div>
+                
+                <div class="summary-card">
+                    <div class="summary-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="summary-number">37</div>
+                    <div class="summary-label">Đoàn viên tham gia</div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="results">
+            <h2 class="section-title">KẾT QUẢ QUYÊN GÓP CHI TIẾT</h2>
+            
+            <div class="results-grid">
+                <div class="result-card">
+                    <div class="result-header">
+                        <h3><i class="fas fa-money-bill-wave"></i> Tiền mặt</h3>
+                    </div>
+                    <div class="result-content">
+                        <div class="result-item">
+                            <span>Chuyển khoản ngân hàng</span>
+                            <span class="result-value">19,300,000đ</span>
+                        </div>
+                        <div class="result-item">
+                            <span>Tiền mặt trực tiếp</span>
+                            <span class="result-value">400,000đ</span>
+                        </div>
+                        <div class="result-item" style="border-top: 2px solid var(--primary-color); padding-top: 1rem; margin-top: 1rem;">
+                            <span style="font-weight: bold;">Tổng tiền mặt</span>
+                            <span class="result-value" style="font-size: 1.2rem;">19,700,000đ</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="result-card">
+                    <div class="result-header">
+                        <h3><i class="fas fa-boxes"></i> Nhu yếu phẩm</h3>
+                    </div>
+                    <div class="result-content">
+                        <div class="result-item">
+                            <span>Gạo (kg)</span>
+                            <span class="result-value">100kg</span>
+                        </div>
+                        <div class="result-item">
+                            <span>Mì tôm (thùng)</span>
+                            <span class="result-value">7 thùng</span>
+                        </div>
+                        <div class="result-item">
+                            <span>Quần áo ấm (bộ)</span>
+                            <span class="result-value">200 bộ</span>
+                        </div>
+                        <div class="result-item">
+                            <span>Chăn màn (chiếc)</span>
+                            <span class="result-value">3 chiếc</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="impact-stats">
+            <div class="container">
+                <h2 class="impact-title">TÁC ĐỘNG CỦA CHIẾN DỊCH</h2>
+                <div class="impact-grid">
+                    <div class="impact-item">
+                        <div class="impact-number">19,700,000đ</div>
+                        <div class="impact-label">Được gửi tận tay đồng bào lũ lụt</div>
+                    </div>
+                    <div class="impact-item">
+                        <div class="impact-number">Nhu yếu phẩm</div>
+                        <div class="impact-label">Được vận chuyển trao tận tay đồng bào vùng lũ</div>
+                    </div>
+                    <div class="impact-item">
+                        <div class="impact-number">Chia sẽ</div>
+                        <div class="impact-label">Khó khăn mất mát với đồng bào Miền trung, Tây nguyên</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="activities">
+            <h2 class="section-title">HOẠT ĐỘNG CỦA NHÓM</h2>
+            
+            <div class="activity-timeline">
+                <div class="activity-item">
+                    <div class="activity-date">
+                        <span class="activity-day">24</span>
+                        <span class="activity-month">TH11</span>
+                    </div>
+                    <div class="activity-content">
+                        <h3>Chuẩn bị chiến dịch</h3>
+                        <p>Nhận được lời kêu gọi chương trình "Tình đồng nghiệp, Nghĩa đồng bào"</p>
+                    </div>
+                </div>
+                
+                <div class="activity-item">
+                    <div class="activity-date">
+                        <span class="activity-day">25</span>
+                        <span class="activity-month">TH11</span>
+                    </div>
+                    <div class="activity-content">
+                        <h3>Khởi động chiến dịch</h3>
+                        <p>Phát động chương trình "Tình đồng nghiệp, Nghĩa đồng bào" đến toàn thể CBCNV công ty</p>
+                    </div>
+                </div>
+                
+                <div class="activity-item">
+                    <div class="activity-date">
+                        <span class="activity-day">30</span>
+                        <span class="activity-month">TH11</span>
+                    </div>
+                    <div class="activity-content">
+                        <h3>Tổng hợp tiền, nhu yếu phẩm</h3>
+                        <p>Tổng hợp số lượng tiền mặt, nhu yếu phẩm chuẩn bị gửi ra đồng bào vùng lũ lụt</p>
+                    </div>
+                </div>
+                
+                <div class="activity-item">
+                    <div class="activity-date">
+                        <span class="activity-day">01</span>
+                        <span class="activity-month">TH12</span>
+                    </div>
+                    <div class="activity-content">
+                        <h3>Gửi đến đồng bào vùng lũ</h3>
+                        <p>Gửi nhu yếu phẩm theo xe cứu trợ và tiền mặt cho BCH công đoàn tổng công ty EVN</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="gallery">
+            <h2 class="section-title">HÌNH ẢNH HOẠT ĐỘNG</h2>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="1.jpg" alt="Hoạt động từ thiện">
+                    <div class="gallery-caption">Bàn nhận nhu yếu phẩm</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="2.jpg" alt="Hoạt động từ thiện">
+                    <div class="gallery-caption">Đêm đầu tiên chiến dịch</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="3.png" alt="Hoạt động từ thiện">
+                    <div class="gallery-caption">Đêm thứ 2</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="4.png" alt="Hoạt động từ thiện">
+                    <div class="gallery-caption">Điểm tập kết đêm thứ 2</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="6.jpg" alt="Hoạt động từ thiện">
+                    <div class="gallery-caption">Vận chuyển Gạo</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="7.jpg" alt="Hoạt động từ thiện">
+                    <div class="gallery-caption">Đêm thứ 3</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="8.jpg" alt="Hoạt động từ thiện">
+                    <div class="gallery-caption">CBCNV ủng hộ tiền mặt</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="9.jpg" alt="Hoạt động từ thiện">
+                    <div class="gallery-caption">Tổng kết đêm thứ 3</div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="team-section">
+            <h2 class="section-title">ĐỘI NGŨ TỔ CHỨC</h2>
+            
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="12.png" alt="Thành viên" class="member-avatar">
+                    <div class="member-name">Trần Minh Anh Vũ</div>
+                    <div class="member-role">Bí thư Đoàn TN Trị An</div>
+                </div>
+                
+                <div class="team-member">
+                    <img src="10.jpg" alt="Thành viên" class="member-avatar">
+                    <div class="member-name">Nguyễn Ngọc Vũ Mạnh</div>
+                    <div class="member-role">Ủy Viên BCH</div>
+                </div>
+                
+                <div class="team-member">
+                    <img src="13.png" alt="Thành viên" class="member-avatar">
+                    <div class="member-name">Lê Thị Nga</div>
+                    <div class="member-role">Ủy Viên BCH</div>
+                </div>
+                
+                <div class="team-member">
+                    <img src="11.png" alt="Thành viên" class="member-avatar">
+                    <div class="member-name">Bùi Văn Hữu Hòa</div>
+                    <div class="member-role">Đoàn viên Đoàn TN</div>
+                </div>
+                <div class="team-member">
+                    <img src="14.png" alt="Thành viên" class="member-avatar">
+                    <div class="member-name">Nguyễn Công Hùng</div>
+                    <div class="member-role">Đoàn viên Đoàn TN</div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p class="gratitude">"Xin chân thành cảm ơn sự đóng góp quý báu của tất cả các nhà hảo tâm đã đồng hành cùng chúng tôi trong chiến dịch này."</p>
+            <p>© 2023 Nhóm Thiện Nguyện Vì Cộng Đồng</p>
+            <p>Mọi thông tin về chiến dịch đều được công khai minh bạch</p>
+        </div>
+    </footer>
+</body>
+</html>
